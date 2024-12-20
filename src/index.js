@@ -1,36 +1,18 @@
-import mongoose from 'mongoose';
-import express from 'express';
-import { DB_NAME } from './constants';
+import dotenv from "dotenv";
+import express from "express";
+import connectDB from "./db/index.js";
 
 const app = express();
 
+dotenv.config();
 
+connectDB();
 
+app.get("/", (req, res) => {
+    res.send(connectDB);
+});
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.listen((process.env.PORT || 3000, () => console.log(`Connecting to ${process.env.PORT})`)))
 
 
 /*
@@ -49,4 +31,3 @@ const app = express();
       throw err;
     }
 })() */
-
